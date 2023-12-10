@@ -4,10 +4,10 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <div>
-    <a href="" target="_blank">
+    <a href="" target="">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
     </a>
-    <a href="" target="_blank">
+    <a href="" target="">
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
