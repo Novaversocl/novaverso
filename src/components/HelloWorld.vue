@@ -24,7 +24,7 @@ const count = ref(0)
   </p>
   <p>
  
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
+   
    
   </p>
   <p class="read-the-docs">Desarrollo Web Full Stack 2023. </p>
