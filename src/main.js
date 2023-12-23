@@ -19,9 +19,9 @@ var geometry = new THREE.BoxGeometry(30, 30, 30);
 
 // Cargar la textura desde una URL
 var textureLoader = new THREE.TextureLoader();
-var texture1 = textureLoader.load('src/assets/textura/oro2.jpg');
-var texture2 = textureLoader.load('src/assets/textura/oro2.jpg');
-var texture3 = textureLoader.load('src/assets/textura/oro2.jpg');
+var texture1 = textureLoader.load('public/textura/oro2.jpg');
+var texture2 = textureLoader.load('public/textura/oro2.jpg');
+var texture3 = textureLoader.load('public/textura/oro2.jpg');
 
 var materials = [
   new THREE.MeshBasicMaterial({ map: texture1 }), // Textura en la cara frontal
