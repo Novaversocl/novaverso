@@ -27,7 +27,7 @@ const count = ref(0)
    
    
   </p>
-  <p class="read-the-docs">Proyecto Web Full Stack 2023. </p>
+  <p class="read-the-docs">Proyec Web Full Stack 2023. </p>
 </template>
 
 <style scoped>
