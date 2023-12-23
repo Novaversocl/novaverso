@@ -67,10 +67,10 @@ loader.load('https://threejs.org/examples/fonts/helvetiker_bold.typeface.json', 
   //   bevelSegments: 1
   // });
 
-  const textMaterialBorder = new THREE.MeshBasicMaterial({ color: 0xffffff });  // Color blanco para el borde
-  const textMeshBorder = new THREE.Mesh(textGeometryBorder, textMaterialBorder);
-  textMeshBorder.position.set(-65, 35, -100);
-  scene.add(textMeshBorder);
+  // const textMaterialBorder = new THREE.MeshBasicMaterial({ color: 0xffffff });  // Color blanco para el borde
+  // const textMeshBorder = new THREE.Mesh(textGeometryBorder, textMaterialBorder);
+  // textMeshBorder.position.set(-65, 35, -100);
+  // scene.add(textMeshBorder);
 });
 
 // Partículas (Estrellas)
