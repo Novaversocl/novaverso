@@ -1,9 +1,9 @@
-import * as THREE from 'three';
-import { createApp } from 'vue';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { FontLoader } from 'three/addons/loaders/FontLoader.js';
-import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
-import App from './App.vue';
+import * as THREE from "three";
+import { createApp } from "vue";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { FontLoader } from "three/addons/loaders/FontLoader.js";
+import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
+import App from "./App.vue";
 
 let WIDTH = window.innerWidth;
 let HEIGHT = window.innerHeight;
@@ -19,9 +19,9 @@ var geometry = new THREE.BoxGeometry(30, 30, 30);
 
 // Cargar la textura desde una URL
 var textureLoader = new THREE.TextureLoader();
-var texture1 = textureLoader.load('/textura/oro2.jpg');
-var texture2 = textureLoader.load('/textura/oro2.jpg');
-var texture3 = textureLoader.load('/textura/oro2.jpg');
+var texture1 = textureLoader.load("/textura/oro2.jpg");
+var texture2 = textureLoader.load("/textura/oro2.jpg");
+var texture3 = textureLoader.load("/textura/oro2.jpg");
 
 var materials = [
   new THREE.MeshBasicMaterial({ map: texture1 }), // Textura en la cara frontal
@@ -29,7 +29,7 @@ var materials = [
   new THREE.MeshBasicMaterial({ map: texture3 }), // Textura en la cara superior
   new THREE.MeshBasicMaterial({ map: texture1 }), // Textura en la cara inferior
   new THREE.MeshBasicMaterial({ map: texture2 }), // Textura en la cara derecha
-  new THREE.MeshBasicMaterial({ map: texture3 })  // Textura en la cara izquierda
+  new THREE.MeshBasicMaterial({ map: texture3 }), // Textura en la cara izquierda
 ];
 
 var cube = new THREE.Mesh(geometry, materials);
@@ -37,41 +37,58 @@ scene.add(cube);
 
 // Texto principal (amarillo)
 const loader = new FontLoader();
-loader.load('https://threejs.org/examples/fonts/helvetiker_bold.typeface.json', function (font) {
-  // Texto principal (amarillo)
-  const textGeometry = new TextGeometry('Novaverso', {
-    font: font,
-    size: 20,
-    height: 0,
-    curveSegments: 10,
-    bevelEnabled: true,
-    bevelThickness: 0,
-    bevelSize: 0,
-    bevelSegments: 0
-  });
+loader.load(
+  "https://threejs.org/examples/fonts/helvetiker_bold.typeface.json",
+  function (font) {
+    // Texto principal (amarillo)
+    const textGeometry = new TextGeometry("Novaverso", {
+      font: font,
+      size: 20,
+      height: 0,
+      curveSegments: 10,
+      bevelEnabled: true,
+      bevelThickness: 0,
+      bevelSize: 0,
+      bevelSegments: 0,
+    });
 
-  const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
-  const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-  textMesh.position.set(-65, 35, -100);
-  scene.add(textMesh);
+    const textGeometryT2 = new TextGeometry("Sitio en Mantenimiento.", {
+      font: font,
+      size: 8,
+      height: 0,
+      curveSegments: 10,
+      bevelEnabled: true,
+      bevelThickness: 0,
+      bevelSize: 0,
+      bevelSegments: 0,
+    });
 
-  // Texto de borde (blanco)
-  // const textGeometryBorder = new TextGeometry('Novaverso', {
-  //   font: font,
-  //   size: 20,
-  //   height: -10,
-  //   curveSegments: 10,
-  //   bevelEnabled: true,
-  //   bevelThickness: 1,  // Ajusta el grosor del borde
-  //   bevelSize: 1,       // Ajusta el tamaño del borde
-  //   bevelSegments: 1
-  // });
+    const textGeometryT3 = new TextGeometry("Proyecto Web Full Stack 2023.", {
+      font: font,
+      size: 8,
+      height: 0,
+      curveSegments: 10,
+      bevelEnabled: true,
+      bevelThickness: 0,
+      bevelSize: 0,
+      bevelSegments: 0,
+    });
 
-  // const textMaterialBorder = new THREE.MeshBasicMaterial({ color: 0xffffff });  // Color blanco para el borde
-  // const textMeshBorder = new THREE.Mesh(textGeometryBorder, textMaterialBorder);
-  // textMeshBorder.position.set(-65, 35, -100);
-  // scene.add(textMeshBorder);
-});
+    const textMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+    const textMaterialt2 = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    const textMaterialt3 = new THREE.MeshBasicMaterial({ color: 0xffffff });
+
+    const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+    const textMesht2 = new THREE.Mesh(textGeometryT2, textMaterialt2);
+    const textMesht3 = new THREE.Mesh(textGeometryT3, textMaterialt3);
+
+    textMesh.position.set(-70, 35, -100);
+    textMesht2.position.set(-59, -100, -100);
+    textMesht3.position.set(-79, -125, -100);
+
+    scene.add(textMesh, textMesht2, textMesht3);
+  }
+);
 
 // Partículas (Estrellas)
 var particlesGeometry = new THREE.BufferGeometry();
@@ -80,7 +97,7 @@ var particlesMaterial = new THREE.PointsMaterial({
   blending: THREE.AdditiveBlending,
   depthTest: false,
   transparent: true,
-  vertexColors: true  // Habilitar colores por vértice
+  vertexColors: true, // Habilitar colores por vértice
 });
 
 var particlesVertices = [];
@@ -96,8 +113,14 @@ for (let i = 0; i < 1000; i++) {
   particlesColors.push(color.r, color.g, color.b);
 }
 
-particlesGeometry.setAttribute('position', new THREE.Float32BufferAttribute(particlesVertices, 3));
-particlesGeometry.setAttribute('color', new THREE.Float32BufferAttribute(particlesColors, 3));
+particlesGeometry.setAttribute(
+  "position",
+  new THREE.Float32BufferAttribute(particlesVertices, 3)
+);
+particlesGeometry.setAttribute(
+  "color",
+  new THREE.Float32BufferAttribute(particlesColors, 3)
+);
 
 var particles = new THREE.Points(particlesGeometry, particlesMaterial);
 scene.add(particles);
@@ -109,20 +132,30 @@ var mobileParticleMaterial = new THREE.PointsMaterial({
   blending: THREE.AdditiveBlending,
   depthTest: false,
   transparent: true,
-  color: new THREE.Color(0xff0000) // Rojo
+  color: new THREE.Color(0xff0000), // Rojo
 });
 
 var mobileParticleVertices = [];
-var direction = new THREE.Vector3(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5);
+var direction = new THREE.Vector3(
+  Math.random() - 0.5,
+  Math.random() - 0.5,
+  Math.random() - 0.5
+);
 direction.normalize();
 var speed = 1;
 
 for (let i = 0; i < 1; i++) {
-  mobileParticleVertices.push(0, 0,0);
+  mobileParticleVertices.push(0, 0, 0);
 }
 
-mobileParticleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(mobileParticleVertices, 3));
-var mobileParticle = new THREE.Points(mobileParticleGeometry, mobileParticleMaterial);
+mobileParticleGeometry.setAttribute(
+  "position",
+  new THREE.Float32BufferAttribute(mobileParticleVertices, 3)
+);
+var mobileParticle = new THREE.Points(
+  mobileParticleGeometry,
+  mobileParticleMaterial
+);
 scene.add(mobileParticle);
 
 // Cámara
@@ -155,7 +188,7 @@ controls.dampingFactor = 0.25;
 controls.rotateSpeed = 0.35;
 
 // Controlar el tamaño de la ventana
-window.addEventListener('resize', () => {
+window.addEventListener("resize", () => {
   WIDTH = window.innerWidth;
   HEIGHT = window.innerHeight;
   camera.aspect = WIDTH / HEIGHT;
@@ -177,15 +210,24 @@ function render() {
     if (mobileParticleVertices[i] > 100 || mobileParticleVertices[i] < -100) {
       direction.x *= -1;
     }
-    if (mobileParticleVertices[i + 1] > 100 || mobileParticleVertices[i + 1] < -100) {
+    if (
+      mobileParticleVertices[i + 1] > 100 ||
+      mobileParticleVertices[i + 1] < -100
+    ) {
       direction.y *= -1;
     }
-    if (mobileParticleVertices[i + 2] > 100 || mobileParticleVertices[i + 2] < -100) {
+    if (
+      mobileParticleVertices[i + 2] > 100 ||
+      mobileParticleVertices[i + 2] < -100
+    ) {
       direction.z *= -1;
     }
   }
 
-  mobileParticleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(mobileParticleVertices, 3));
+  mobileParticleGeometry.setAttribute(
+    "position",
+    new THREE.Float32BufferAttribute(mobileParticleVertices, 3)
+  );
   mobileParticleGeometry.attributes.position.needsUpdate = true;
 
   controls.update();
@@ -197,4 +239,4 @@ function render() {
 // Renderizar
 render();
 
-createApp(App).mount('#app');
+createApp(App).mount("#app");
