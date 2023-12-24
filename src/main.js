@@ -128,11 +128,13 @@ scene.add(particles);
 // Partícula móvil en zigzag de color rojo
 var mobileParticleGeometry = new THREE.BufferGeometry();
 var mobileParticleMaterial = new THREE.PointsMaterial({
-  size: 2,
+  size: 3,
   blending: THREE.AdditiveBlending,
   depthTest: false,
   transparent: true,
   color: new THREE.Color(0xff0000), // Rojo
+
+
 });
 
 var mobileParticleVertices = [];
@@ -240,3 +242,8 @@ function render() {
 render();
 
 createApp(App).mount("#app");
+
+// Autor: Juan Luis Estrada
+// Fecha: 01-12-2023
+// Descripción:
+// Proyecto chileno en pleno desarrollo, estamos dando los primeros pasos para impulsar el éxito de microempresas a través de soluciones tecnológicas innovadoras.
