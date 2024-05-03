@@ -63,7 +63,7 @@ loader.load(
       bevelSegments: 0,
     });
 
-    const textGeometryT3 = new TextGeometry("Proyecto Web Full Stack 2023.", {
+    const textGeometryT3 = new TextGeometry("Proyecto Web Full Stack 2024.", {
       font: font,
       size: 8,
       height: 0,
